@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "Epic video fullscreen",
+  "description": "Abre los videos de EPIC en una ventana aparte, a pantalla completa.",
+  "version": "1.0",
+  "icons": {"128": "icon-128.png"},
+   
+  "content_scripts": [
+    {
+        "matches": ["https://*.epic-sam.net/*"],
+        "js": ["content_script.js"]
+    }
+  ],
+  
+  "browser_action": {
+   "default_icon": "icon.png",
+   "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs", "activeTab", "https://*.epic-sam.net/*"
+   ]
+}
