@@ -4,7 +4,7 @@ Esta extensión de Chrome posibilita ver los videos de Epic* a pantalla completa
 
 ## Como instalar
 
-Bajar el archivo epic-plugin.crx
+Bajar el archivo [release/epic-plugin.crx](https://github.com/libasoles/epic-plugin-sxxi/blob/master/release/epic-plugin.crx)
 
 En Chrome, ir a Settings -> Extensions, o directamente a esta dirección: 
 
