@@ -10,13 +10,15 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     switch (request.action) 
     {
         case "fullscreenVideo":        
-            var msg = makeVideoFullscreen();
-            response = { msg: msg };
+            response.msg = video.makeVideoFullscreen();
             break;
             
         case "textSize":        
-            var msg = changeTextSize(request);
-            response = { msg: msg };
+            response.msg = forum.changeTextSize(request);
+            break;
+            
+        case "highlightTitles":
+            response.msg = forum.highlightTitles(request);
             break;
             
         default:
@@ -26,77 +28,123 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     sendResponse(response); 
 });
 
-function makeVideoFullscreen() {
+/**
+ * Video feaures
+ */
+let video = {
     
-    var elem; // object containing the url
-    var src; // the actual url of the resource
-    
-    // access main iframe 
-    var iframe = document.getElementById('contentBody');
-    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    makeVideoFullscreen: function() {
+        
+        let elem; // object containing the url
+        let src; // the actual url of the resource
+        
+        // access main iframe 
+        let iframe = document.getElementById('contentBody');
+        let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-    // try to detect video in different scenarios
-    elem = innerDoc.getElementById('myElementVideo');
-    if(elem != null) {
-        
-        /** 
-         * can't trigger swf fullscreen mode from js
-         * so, override main frame content with flash/swf content
-        */
-        iframe = iframe.contentWindow || iframe.contentDocument.document || iframe.contentDocument;
-        iframe.document.open();
-        iframe.document.write(elem.outerHTML);
-        iframe.document.close();
-        
-    } else {
-        
-        // access second iframe
-        iframe = innerDoc.getElementById('InnerUrlId');
-        innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+        // try to detect video in different scenarios
+        elem = innerDoc.getElementById('myElementVideo');
+        if(elem != null) {
+            
+            /** 
+            * can't trigger swf fullscreen mode from js
+            * so, override main frame content with flash/swf content
+            */
+            iframe = iframe.contentWindow || iframe.contentDocument.document || iframe.contentDocument;
+            iframe.document.open();
+            iframe.document.write(elem.outerHTML);
+            iframe.document.close();
+            
+        } else {
+            
+            // access second iframe
+            iframe = innerDoc.getElementById('InnerUrlId');
+            innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-        // get video iframe
-        elem = innerDoc.getElementsByTagName('iframe')[0];
+            // get video iframe
+            elem = innerDoc.getElementsByTagName('iframe')[0];
+            
+            // get video source
+            src = elem.src;
+            
+            // open video in new window, fullscreen
+            window.open(src);
+        } 
         
-        // get video source
-        src = elem.src;
-        
-        // open video in new window, fullscreen
-        window.open(src);
-    } 
-    
-    return "Done";
+        return "Done";
+    }
 }
 
-function changeTextSize(request) {
-      
-    var iframe = document.getElementById("contentBody");   
+/**
+ * Forum features
+ */
+let forum = {
     
-    iframe = iframe.contentDocument || iframe.contentWindow.document;
-    
-    iframe = iframe.getElementById("rawContent");
-    
-    iframe = iframe.contentDocument || iframe.contentWindow.document;
-    
-    var page = iframe.getElementById("forum_page");
-    
-    if(page != null) {
-                  
-        if(iframe.body.classList.contains("text-resized"))
-            return true;
+    getPageIframe: function() {
         
-        var sheet = iframe.createElement('style');
-        sheet.innerHTML = "body.text-resized #message-tree span,\n" 
-                        + "body.text-resized #message-tree div {\n"
-                        + "    font-size: 17px !important;\n"
-                        + "}";
-
-        iframe.head.appendChild(sheet); // append in head
-
-        iframe.body.classList.add("text-resized");      
-    }    
+        let iframe = document.getElementById("contentBody");   
+        
+        iframe = iframe.contentDocument || iframe.contentWindow.document;
+        
+        iframe = iframe.getElementById("rawContent");
+        
+        iframe = iframe.contentDocument || iframe.contentWindow.document;
+        
+        let page = iframe.getElementById("forum_page");
+        
+        // assure it's the correct page
+        if(page != null) {
+                    
+            return iframe;   
+        }    
+        
+        return null; 
+    },    
     
-    return true; 
-}
+    changeTextSize: function (request) {
+    
+        let iframe = this.getPageIframe();
+        
+        let page = iframe.getElementById("forum_page");
+        
+        if(page != null) {
+                    
+            if(iframe.body.classList.contains("text-resized"))
+                return true;
+            
+            let sheet = iframe.createElement('style');
+            sheet.innerHTML = "body.text-resized #message-tree span,\n" 
+                            + "body.text-resized #message-tree div {\n"
+                            + "    font-size: 17px !important;\n"
+                            + "}";
+            
+            iframe.head.appendChild(sheet); // append in head
 
+            iframe.body.classList.add("text-resized");      
+        }    
+        
+        return true; 
+    },    
+    
+    highlightTitles: function (request) {
+    
+        let iframe = this.getPageIframe();
+        
+        let page = iframe.getElementById("forum_page");
+        
+        if(page != null) {                   
+            
+            let sheet = iframe.createElement('style');
+    
+            sheet.innerHTML = "#message-tree .msg_summary_line {\n"
+                            + "     background-color: #bcf;\n"
+                            + "}";
+
+            iframe.head.appendChild(sheet); // append in head    
+        }    
+        
+        return true; 
+    }
+}
 
 
