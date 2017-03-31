@@ -1,9 +1,9 @@
-# Epic Tweaks 
+# Epic* Tweaks 
 
 Esta extensión de Chrome posibilita:
 
-    - ver los videos de Epic* a pantalla completa. 
-    - agrendar la letra de los foros.
+    - ver los videos de Epic a pantalla completa. 
+    - agrandar la letra de los foros.
     - remarcar titulos del foro.
 
 ## Como instalar
@@ -16,11 +16,6 @@ En Chrome, ir a Settings -> Extensions, o directamente a esta dirección:
 
 Arrastrar y soltar el archivo crx sobre la pantalla de Chrome Extensions.
 
-## Screenshot
-
-
-![screenshot](./screenshot.png)
-
 
 ## Como usar
 
@@ -29,6 +24,12 @@ Es simple, haces click en el ícono del plugin, y apretas el botón "Fullscreen"
 
 ### Texto
 En los foros, simplemente clickeas en el icono del plugin (de Chrome) y seleccionas "Agrandar texto".
+
+
+## Screenshot
+
+![screenshot](./screenshot.png)
+
 
 ## No funciona?
 
