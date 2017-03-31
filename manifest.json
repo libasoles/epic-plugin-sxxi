@@ -18,6 +18,6 @@
    "default_popup": "popup.html"
   },
   "permissions": [
-    "tabs", "activeTab", "https://*.epic-sam.net/*"
+    "activeTab", "https://*.epic-sam.net/*"
    ]
 }
