@@ -15,11 +15,6 @@ En Chrome, ir a Settings -> Extensions, o directamente a esta dirección:
 
 Arrastrar y soltar el archivo crx sobre la pantalla de Chrome Extensions.
 
-## Screenshot
-
-
-![screenshot](./screenshot.png)
-
 
 ## Como usar
 
@@ -28,6 +23,12 @@ Es simple, haces click en el ícono del plugin, y apretas el botón "Fullscreen"
 
 ### Texto
 En los foros, simplemente clickeas en el icono del plugin (de Chrome) y seleccionas "Agrandar texto".
+
+
+## Screenshot
+
+![screenshot](./screenshot.png)
+
 
 ## No funciona?
 
