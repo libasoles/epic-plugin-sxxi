@@ -1,6 +1,10 @@
 
 #changelog
 
+#### 2017-3-31  - 1.3 Released
+
+    - Highlight titles 
+    
 #### 2017-3-31  - 1.2 Released
 
     - New option to magnify font size in Forums. 

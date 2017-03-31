@@ -4,6 +4,7 @@ Esta extensión de Chrome posibilita:
 
     - ver los videos de Epic a pantalla completa. 
     - agrandar la letra de los foros.
+    - remarcar titulos del foro.
 
 ## Como instalar
 

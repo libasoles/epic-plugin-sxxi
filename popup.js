@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     
   // make video fullscreen
-  var checkPageButton = document.getElementById('fullscreen');
-  checkPageButton.addEventListener('click', function() {
+  var fullscreenBtn = document.getElementById('fullscreen');
+  fullscreenBtn.addEventListener('click', function() {
 
     chrome.tabs.getSelected(null, function(tab) {
     
@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }, false);
   
   // change text size  
-  var textResizer = document.getElementById("text-size");
-    textResizer.addEventListener('click', function(event) {
+  var textResizerBtn = document.getElementById("text-size");
+    textResizerBtn.addEventListener('click', function(event) {
 
         chrome.tabs.getSelected(null, function(tab) {
         
@@ -25,4 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });               
         });
     }, false);
+    
+  // highlights titles
+  var highlightTitlesBtn = document.getElementById("highlight-titles");
+    highlightTitlesBtn.addEventListener('click', function(event) {
+
+        chrome.tabs.getSelected(null, function(tab) {
+        
+            // Send a request to the content script.
+            chrome.tabs.sendRequest(tab.id, {action: "highlightTitles"}, function(response) {
+                console.log(response.msg);
+            });               
+        });
+    }, false);
 }, false);
+
+
+
