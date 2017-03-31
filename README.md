@@ -1,6 +1,9 @@
-# Epic - video fullscreen 
+# Epic Tweaks 
 
-Esta extensión de Chrome posibilita ver los videos de Epic* a pantalla completa. 
+Esta extensión de Chrome posibilita:
+
+    - ver los videos de Epic* a pantalla completa. 
+    - agrendar la letra de los foros.
 
 ## Como instalar
 
@@ -12,15 +15,28 @@ En Chrome, ir a Settings -> Extensions, o directamente a esta dirección:
 
 Arrastrar y soltar el archivo crx sobre la pantalla de Chrome Extensions.
 
+## Screenshot
+
+
+![screenshot](./screenshot.png)
+
+
 ## Como usar
 
+### Videos
 Es simple, haces click en el ícono del plugin, y apretas el botón "Fullscreen". Pero por supuesto, para que el plugin funcione tenes que estar en Epic y tiene que existir un video en la sección en que estas.
 
-### No funciona
+### Texto
+En los foros, simplemente clickeas en el icono del plugin (de Chrome) y seleccionas "Agrandar texto".
+
+## No funciona?
+
 Si ya estabas en Epic y acabas de instalar el plugin, tendrías que recargar la pagina de Epic (apretando F5).
 
+### Videos
 Si el boton "Fullscreen" no funciona, asegurate de que tu navegador de permiso al plugin para abrir una ventana emergente.
 
+### No hay caso?
 Si aún no funciona, podes dejarme un mensaje. Gracias. 
 
 ---
