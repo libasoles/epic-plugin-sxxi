@@ -16,6 +16,10 @@ En Chrome, ir a Settings -> Extensions, o directamente a esta dirección:
 
 Arrastrar y soltar el archivo crx sobre la pantalla de Chrome Extensions.
 
+### Desde código
+Alternativamente, en vez de importar el crx compilado podes clonar este repositorio e importar la carpeta sin compilar. Los primeros pasos son los mismos, solo que elegís la opción "Load unpacked extension...". Si no la ves, asegurate de que esté activado el "modo desarrollador".
+
+
 
 ## Como usar
 
@@ -26,9 +30,11 @@ Es simple, haces click en el ícono del plugin, y apretas el botón "Fullscreen"
 En los foros, simplemente clickeas en el icono del plugin (de Chrome) y seleccionas "Agrandar texto".
 
 
+
 ## Screenshot
 
 ![screenshot](./screenshot.png)
+
 
 
 ## No funciona?
