@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Epic video fullscreen",
-  "description": "Abre los videos de EPIC en una ventana aparte, a pantalla completa.",
-  "version": "1.1",
+  "name": "Epic Tweaks",
+  "description": "Agrega funcionalidades a EPIC, como abrir los videos a pantalla completa.",
+  "version": "1.2",
   "icons": {"128": "icon-128.png"},
    
   "content_scripts": [
