@@ -91,14 +91,7 @@ function changeTextSize(request) {
                         + "}";
 
         iframe.head.appendChild(sheet); // append in head
-        /*
-        var url = chrome.extension.getURL('content-script.css');   
-        var cssLink = document.createElement("link");
-        cssLink.href = url; 
-        cssLink.rel = "stylesheet"; 
-        cssLink.type = "text/css"; 
-        iframe.body.appendChild(cssLink);        
-        */
+
         iframe.body.classList.add("text-resized");      
     }    
     
