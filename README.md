@@ -1,9 +1,9 @@
-# Epic Tweaks 
+# Epic* Tweaks 
 
 Esta extensión de Chrome posibilita:
 
-    - ver los videos de Epic* a pantalla completa. 
-    - agrendar la letra de los foros.
+    - ver los videos de Epic a pantalla completa. 
+    - agrandar la letra de los foros.
 
 ## Como instalar
 
