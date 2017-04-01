@@ -44,7 +44,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 });
 
 /**
- * Video feaures
+ * Video features
  */
 let video = {
     
