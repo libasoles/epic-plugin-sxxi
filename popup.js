@@ -38,6 +38,34 @@ document.addEventListener('DOMContentLoaded', function() {
             });               
         });
     }, false);
+    
+  // improve arrows
+  var improveArrowsBtn = document.getElementById("improve-arrows");
+    improveArrowsBtn.addEventListener('click', function(event) {
+
+        chrome.tabs.getSelected(null, function(tab) {
+        
+            // Send a request to the content script.
+            chrome.tabs.sendRequest(tab.id, {action: "improveArrows"}, function(response) {
+                console.log(response.msg);
+            });               
+        });
+    }, false);
+    
+  // improve forum
+  var improveForumBtn = document.getElementById("improve-forum");
+    improveForumBtn.addEventListener('click', function(event) {
+
+        chrome.tabs.getSelected(null, function(tab) {
+        
+            // Send a request to the content script.
+            chrome.tabs.sendRequest(tab.id, {action: "improveForum"}, function(response) {
+                console.log(response.msg);
+            });               
+        });
+    }, false);
+    
+    
 }, false);
 
 

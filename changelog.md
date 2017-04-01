@@ -1,6 +1,11 @@
 
 #changelog
 
+#### 2017-3-31  - 1.4 Released
+
+    - Highlight forum frame
+    - Improved arrows and buttons
+    
 #### 2017-3-31  - 1.3 Released
 
     - Highlight titles 
