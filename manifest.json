@@ -3,7 +3,7 @@
 
   "name": "Epic Tweaks",
   "description": "Agrega funcionalidades a EPIC, como abrir los videos a pantalla completa.",
-  "version": "1.4.1",
+  "version": "1.4.3",
   "icons": {"128": "icon-128.png"},
    
   "content_scripts": [

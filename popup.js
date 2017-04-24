@@ -29,6 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
   actionHelper.createClickListener(improveForumBtn, "improveForum", function(response) {
                 console.log(response.msg);
             });
+
+  // improve TP
+  var improveTPBtn = document.getElementById("improve-tp");
+  actionHelper.createClickListener(improveTPBtn, "improveTP", function(response) {
+                console.log(response.msg);
+            });
+
     
 }, false);
 
