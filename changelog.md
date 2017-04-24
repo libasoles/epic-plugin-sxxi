@@ -1,6 +1,16 @@
 
 #changelog
 
+#### 2017-4-23  - 1.4.3 Released
+	
+	- Increase text size in TPs
+
+#### 2017-4-18  - 1.4.2 Released
+	
+	- Highlighted Read filter
+	- Removed By Participant filter
+	- Removed Export button
+
 #### 2017-3-31  - 1.4 Released
 
     - Highlight forum frame

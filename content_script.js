@@ -29,11 +29,18 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
             forum.changeTextSize(request);
             forum.highlightTitles(request);
             forum.improveArrows(request);
-            forum.improveButtons(request);
-            forum.highlightFrame(request);
+            forum.improveButtons(request);            
+            forum.improveFilters(request);
+            frames.highlightFrame(request);
             response.msg = 1;
-            break;     
-            
+            break;   
+
+         case "improveTP":
+            tp.changeTextSize(request);
+            frames.highlightFrame(request);
+            response.msg = 1;
+            break; 
+
         default:
             break;    
     }
@@ -44,7 +51,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 });
 
 /**
- * Video feaures
+ * Video features
  */
 let video = {
     
@@ -94,24 +101,11 @@ let video = {
  * Forum features
  */
 let forum = {
-    
-    getMainIframe: function() {
-        
-        let iframe = document.getElementById("contentBody");   
-        
-        iframe = iframe.contentDocument || iframe.contentWindow.document;
-        
-        return iframe;
-    },
-    
+
     getPageIframe: function() {
         
-        let iframe = this.getMainIframe();
-        
-        // get secondary iframe
-        iframe = iframe.getElementById("rawContent");        
-        iframe = iframe.contentDocument || iframe.contentWindow.document;
-        
+        let iframe = frames.getPageIframe();
+
         let page = iframe.getElementById("forum_page");
         
         // assure it's the correct page
@@ -135,9 +129,11 @@ let forum = {
             let sheet = iframe.createElement('style');
             
             sheet.innerHTML = `
+                body.text-resized #message-tree p,
                 body.text-resized #message-tree span,
                 body.text-resized #message-tree div {
                     font-size: 17px !important;
+                    font-family: Arial !important;
                 }
             `;
             
@@ -202,14 +198,16 @@ let forum = {
                     #forum_page .x-tree-no-lines .x-tree-elbow-end {
                         border: none !important;
                     }
-                
-                    #forum_page .x-tree-no-lines .x-tree-elbow-plus {       
+                    
+                    #forum_page .x-tree-no-lines .x-tree-elbow-plus,
+                    #forum_page .x-tree-no-lines .x-tree-elbow-end-plus {       
                         transform: rotate(45deg);
                         -webkit-transform: rotate(45deg);
                         margin-top: -4px !important;
                     }
 
-                    #forum_page .x-tree-no-lines .x-tree-elbow-minus {       
+                    #forum_page .x-tree-no-lines .x-tree-elbow-minus,
+                    #forum_page .x-tree-no-lines .x-tree-elbow-end-minus {       
                         transform: rotate(-135deg);
                         -webkit-transform: rotate(-135deg);
                         margin-top: 9px !important;
@@ -252,6 +250,15 @@ let forum = {
                 #forum_page .x-tree-no-lines .x-tree-elbow-minus {   
                     margin-top: 2px !important;
                 }
+
+                .buttonText_db {
+                    padding-top: 0;
+                    line-height: 22px;
+                }
+
+                #divPdf {
+                    display: none;
+                }
             `;
 
             iframe.head.appendChild(sheet); // append in head    
@@ -261,7 +268,105 @@ let forum = {
         
         return true;             
     },
+   
+    improveFilters: function(request) {
+
+        let iframe = this.getPageIframe();
+       
+        if(iframe != null) {                   
+            console.log("filters ok");
+            if(iframe.body.classList.contains("improved-filters"))
+                return true;
+            
+            let sheet = iframe.createElement('style');
     
+            sheet.innerHTML = `
+                #div_labelFilterByParticipant,
+                #Participants {      
+                    display: none;
+                }
+
+                #divRead,
+                #ext-gen44 {
+                    width: 110px !important;
+                }
+
+                #comboRead {
+                    width: 85px !important;
+                }
+
+                #ext-comp-1008 {
+                    background: url(/Images/at_a_glance_e.jpg) no-repeat scroll 0 #2d67b0;
+                    padding-right: 5px;
+                    width: 150px;
+                    text-align: right;
+                    color: white;
+                    border-top-right-radius: 3px;
+                    border-top-left-radius: 3px;
+                }
+            `;
+
+            iframe.head.appendChild(sheet); // append in head  
+            
+            iframe.body.classList.add("improved-filters");
+        }    
+        
+        return true;         
+    }
+}
+
+let tp = {
+    
+    changeTextSize: function (request) {
+    
+        let iframe = frames.getPageIframe();
+        
+        if(iframe != null) {
+                    
+            if(iframe.body.classList.contains("text-resized"))
+                return true;
+            
+            let sheet = iframe.createElement('style');
+            
+            sheet.innerHTML = `
+                p,
+                span,
+                div {
+                    font-family; Arial !important;
+                    font-size: 20px !important;
+                }
+            `;
+            
+            iframe.head.appendChild(sheet); // append in head
+
+            iframe.body.classList.add("text-resized");      
+        }    
+        
+        return true; 
+    },    
+}
+
+let frames = {
+
+    getMainIframe: function() {
+        
+        let iframe = document.getElementById("contentBody");   
+        
+        iframe = iframe.contentDocument || iframe.contentWindow.document;
+        
+        return iframe;
+    },
+    
+    getPageIframe: function() {
+        
+        let iframe = this.getMainIframe();
+        
+        // get secondary iframe
+        iframe = iframe.getElementById("rawContent");        
+        iframe = iframe.contentDocument || iframe.contentWindow.document;
+        
+        return iframe;   
+    }, 
     highlightFrame: function (request) {
     
         let iframe = this.getMainIframe();
@@ -289,8 +394,5 @@ let forum = {
         }    
         
         return true; 
-    }
+    },
 }
-
-
-
